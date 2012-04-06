@@ -9,21 +9,25 @@ class ImagesController < ApplicationController
   end
   
   def create
+    
     @image = Image.new
-    if params[:image] != nil
+    if params[:image] != nil && params[:image]["url"].strip != ""
       if Image.find_by_url(params[:image]["url"]) == nil
         @image.url = params[:image]["url"]
         @image.description = params[:image]["description"]
         @image.save
         if params[:image]["tags"] != nil
-          @image.tags << Tag.find_or_create_by_keyword(params[:image]["tags"])
+          tagsarray = params[:image]["tags"].split(",").collect { |c| c.strip }
+          tagsarray.each do |t|
+            @image.tags << Tag.find_or_create_by_keyword(t)
+          end
         end
-        redirect_to :action => "show", :id => @image.id
+        redirect_to image_path(@image)
       else
-        redirect_to new_image_path
+        redirect_to new_image_path, :alert => "This image already exists."
       end
     else
-      redirect_to new_image_path
+      redirect_to new_image_path, :alert => "All fields must be complete."
     end
 
   end
@@ -33,10 +37,10 @@ class ImagesController < ApplicationController
   
   def index
     
-    @imagecount = Image.count
+    imagecount = Image.count
     @imagearray = []
     until @imagearray.count == 4 do
-      imageid = rand(@imagecount) + 1
+      imageid = rand(imagecount) + 1
       unless @imagearray.include?(imageid)
         @imagearray += [imageid]
       end

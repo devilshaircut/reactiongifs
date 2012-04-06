@@ -6,7 +6,7 @@
       memo = 0
       @imagearray.each do |t|
         memo += 1
-        if memo != 5
+        if memo != 1
     %>
     <div class="span3">
       <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
