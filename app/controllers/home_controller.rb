@@ -10,8 +10,6 @@ class HomeController < ApplicationController
       @image.save
       if params[:image]["tags"] != nil
         @tag = Tag.find_or_create_by_keyword(params[:image]["tags"])
-        @tag.keyword = params[:image]["tags"]
-        @tag.save
         @imagestag = ImagesTag.new
         @imagestag.image_id = @image.id
         @imagestag.tag_id = @tag.id
@@ -20,6 +18,15 @@ class HomeController < ApplicationController
     end
     
     @imagecount = Image.count
+    @imagearray = []
+    until @imagearray.count == 4 do
+      imageid = rand(@imagecount)
+      unless @imagearray.include?(imageid)
+        @imagearray += [imageid]
+      end
+    end
+    
+    # Downcase
     
   end
   

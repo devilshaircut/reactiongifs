@@ -1,16 +1,9 @@
 <div class="container">
   
   <div class="row">
-    <%
-      imagearray = []
-      until imagearray.count == 4 do
-        imageid = rand(@imagecount)
-        if !imagearray.include?(imageid)
-          imagearray += [imageid]
-        end
-      end
-      imagearray.each do |t| %>
+    <% @imagearray.each do |t| %>
     <div class="span3">
+      <p><%= t+1 %></p>
       <img src="<%= Image.find_by_id(t+1).url %>" />
     </div>
     <!-- .span3 -->
