@@ -1,7 +1,8 @@
 Reactiongifs::Application.routes.draw do
   
   root :to    =>    "home#index"
-  match '/index', :to => 'home#index'
+  
+  resources :images
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
