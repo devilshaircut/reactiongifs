@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
   
   def index
-
-      @image = Image.new
+    
+    @image = Image.new
+    if Image.find_by_url(params[:image]["url"]) == nil
       @image.url = params[:image]["url"]
       @image.description = params[:image]["description"]
-    if Image.find_by_url(params[:image]["url"]) == nil
+      # @image.update_attributes(:url => params[:image]["url"], :description => params[:image]["description"])
       @image.save
       if params[:image]["tags"] != nil
         @tag = Tag.find_or_create_by_keyword(params[:image]["tags"])
@@ -17,12 +18,9 @@ class HomeController < ApplicationController
         @imagestag.save
       end
     end
-
     
-
-    # @image = Image.find_or_create_by_url(params[:url])
-    # @image.description = params[:description]
-    # @image.save
+    @imagecount = Image.count
+    
   end
   
 end

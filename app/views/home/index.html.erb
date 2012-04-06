@@ -1,9 +1,22 @@
-<script>
-  $('.button').modal();
-</script>
-
 <div class="container">
-
+  
+  <div class="row">
+    <%
+      imagearray = []
+      until imagearray.count == 4 do
+        imageid = rand(@imagecount)
+        if !imagearray.include?(imageid)
+          imagearray += [imageid]
+        end
+      end
+      imagearray.each do |t| %>
+    <div class="span3">
+      <img src="<%= Image.find_by_id(t+1).url %>" />
+    </div>
+    <!-- .span3 -->
+    <% end %>
+  </div>
+  <!-- .row -->
 
   <%= form_for @image, :url => "index" do |i| %>
     <%= i.label :url %>
@@ -15,9 +28,7 @@
     <%= i.submit "Submit Image" %>
   <% end %>
   
-  
-  
-  
+
 <!--
 <div class="row">
   <div class="span3">Module 1</div>
