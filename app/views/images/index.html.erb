@@ -4,6 +4,7 @@
     <% @imagearray.each do |t| %>
     <div class="span3">
       <img src="<%= Image.find_by_id(t).url %>" />
+      <%= Image.find_by_id(t).tags[0].keyword %>
     </div>
     <!-- .span3 -->
     <% end %>
