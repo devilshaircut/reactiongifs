@@ -4,9 +4,13 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
   
+  def show
+    @imageurl = Image.find_by_id(params[:id]).url
+  end
+  
   def create
     @image = Image.new
-    unless params[:image] == nil
+    if params[:image] != nil
       if Image.find_by_url(params[:image]["url"]) == nil
         @image.url = params[:image]["url"]
         @image.description = params[:image]["description"]
@@ -14,16 +18,17 @@ class ImagesController < ApplicationController
         if params[:image]["tags"] != nil
           @image.tags << Tag.find_or_create_by_keyword(params[:image]["tags"])
         end
+        redirect_to :action => "show", :id => @image.id
+      else
+        redirect_to new_image_path
       end
+    else
+      redirect_to new_image_path
     end
-    redirect_to new_image_path
+
   end
   
   def edit
-  end
-  
-  def show
-    @imageurl = @image.url
   end
   
   def index
