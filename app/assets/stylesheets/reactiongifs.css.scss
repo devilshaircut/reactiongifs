@@ -1,21 +1,100 @@
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
+
+/**************************************************
+
+  Table of Contents
+
+**************************************************
+
+  Search Form
+  Image Tiles
+
+**************************************************/
+
+
 body {
-
+  padding-top: 40px;
+  background: transparent url("background.gif") repeat 0 0;
 }
 
-.container {
-
+.row-clear {
+  display: block;
+  float: left;
+  width: 100%;
 }
 
 
-.span3 {
-  overflow: hidden;
+/* Search Form */
+
+.search-form {
+  padding-top: 90px;
+  padding-bottom: 100px;
+  margin-bottom: 20px;
+  h1 {
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    line-height: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #9b4d39;
+    span {
+      color: #39699b;
+    }
+  }
+  form {
+    margin: 0;
+  }
+  input[type="text"] {
+    width: 100%;
+    height: 48px;
+    padding: 9px 102px 11px 10px;
+    margin: 0 auto;
+    border: 1px solid #eaeaea;
+    font-size: 18px;
+    @include border-radius(3px);
+    @include box-shadow(0 1px 0 #ffffff);
+    @include box-sizing(border-box);
+  }
+  input[type="submit"] {
+    width: 100px;
+    height: 44px;
+    padding: 7px 8px 9px 8px;
+    margin: 2px 0 0 -102px;
+    position: absolute;
+    @include box-sizing(border-box);
+  }
+}
+
+
+/* Image Tiles */
+
+.image-tile {
   height: 220px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 20px !important;
+  background: #ffffff;
+  @include box-shadow(0 1px 3px #d1d1cd);
+  @include box-sizing(border-box);
+  .thumb {
+    height: 160px;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    background: transparent url("throbber.gif") no-repeat center center;
+    img {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+  }
+  .tag {
+    display: block;
+    float: left;
+    padding: 3px 8px 5px 8px;
+    margin: 0 5px 0 0;
+    border: 1px solid #d9d9d9;
+    @include border-radius(3px);
+  }
 }
 
-.span12 {
-  margin-bottom: 20px;
-}

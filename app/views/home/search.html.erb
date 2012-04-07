@@ -1,36 +1,38 @@
 <div class="container">
 
   <div class="row">
-    
-    <%
-      memo = 0
-      @imagearray.each do |t|
-        memo += 1
-        if memo != 1
-    %>
-    <div class="span3">
-      <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
-      <%= Image.find_by_id(t).tags[0].keyword %>
-    </div>
-    <!-- .span3 -->
-    
-        <% else %>
-    <div class="span12">
-      <%= form_tag root_path, :method => "get" do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil %>
-      <% end %>
-    </div>
-    <!-- .span12 -->
-    
-    <div class="span3">
-      <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
-      <%= Image.find_by_id(t).tags[0].keyword %>
-    </div>
-    <!-- .span3 -->
-    
+
+    <div class="row-clear">
+      <div class="span6 offset3 search-form">
+        <a href="<%= root_path %>"><h1><span>Reaction GIF</span> Database</h1></a>        
+        <%= form_tag search_path, :method => "get" do %>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search" %>
         <% end %>
+      </div>
+      <!-- .span6 .offset3 .search-form -->
+    </div>
+    <!-- .row-clear -->
+    
+    <% if @searchresult == nil %>
+      <p>No results.</p>
+      
+    <% else %>
+      <% @searchresult.each do |r| %>
+    <div class="span3 image-tile">
+      <div class="thumb">
+        <img src="<%= r.url %>" alt="<%= r.description %>" />
+      </div>
+      <!-- .thumbnail -->
+        <% r.tags.each do |t| %>
+      <span class="tag"><%= t.keyword %></span>
+        <% end %>
+    </div>
+    <!-- .span3 .image-tile -->
+    
+      <% end %>
     <% end %>
+    
   </div>
   <!-- .row -->
 
