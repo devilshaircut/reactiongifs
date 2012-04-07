@@ -9,12 +9,12 @@
         if memo != 5
     %>
     <div class="span3 image-tile">
-      <div class="thumb">
+      <a href="<%= image_path(t) %>" class="thumb">
         <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
-      </div>
-      <!-- .thumbnail -->
+      </a>
+      <!-- .thumb -->
           <% Image.find_by_id(t).tags.each do |k| %>
-      <a href="#" class="tag"><%= k.keyword %></a>
+      <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
           <% end %>
     </div>
     <!-- .span3 .image-tile -->
@@ -24,7 +24,7 @@
       <div class="span6 offset3 search-form">
         <a href="<%= root_path %>"><h1><span>Reaction GIF</span> Database</h1></a>
         <%= form_tag search_path, :method => "get" do %>
-          <%= text_field_tag :search, params[:search] %>
+          <%= text_field_tag :search %>
           <%= submit_tag "Search" %>
         <% end %>
       </div>
@@ -36,7 +36,7 @@
       <div class="thumb">
         <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
       </div>
-      <!-- .thumbnail -->
+      <!-- .thumb -->
       <% Image.find_by_id(t).tags.each do |k| %>
       <a href="#" class="tag"><%= k.keyword %></a>
       <% end %>

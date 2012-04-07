@@ -23,9 +23,9 @@
       <div class="thumb">
         <img src="<%= r.url %>" alt="<%= r.description %>" />
       </div>
-      <!-- .thumbnail -->
+      <!-- .thumb -->
         <% r.tags.each do |t| %>
-      <span class="tag"><%= t.keyword %></span>
+      <a href="#" class="tag"><%= t.keyword %></a>
         <% end %>
     </div>
     <!-- .span3 .image-tile -->

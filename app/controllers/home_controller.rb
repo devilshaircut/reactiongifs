@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     imagecount = Image.count
     @imagearray = []
     # If a record exists with ID matching the RNG, add it to the array. Do this until array is length 8.
-    until @imagearray.count == 8 do
+    until @imagearray.count == 12 do
       imageid = rand(imagecount) + 1
       unless @imagearray.include?(imageid) || Image.find_by_id(imageid) == nil
         @imagearray += [imageid]
