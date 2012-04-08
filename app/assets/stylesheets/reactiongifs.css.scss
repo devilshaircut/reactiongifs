@@ -124,12 +124,20 @@ label {
   padding: 3px 8px 5px 8px;
   margin: 0 5px 10px 0;
   border: 1px solid #d9d9d9;
+  background: #ffffff;
   @include border-radius(3px);
 }
 
 
-
 /* Page Styles */
+
+/* Search Results */
+
+.search-result {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
 
 /* Show Image */
 

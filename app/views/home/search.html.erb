@@ -5,9 +5,16 @@
     <%= render "shared/search_form" %>
     
     <% if @searchresult == nil %>
+    <div class="span12 search-result">
       <p>No results.</p>
+    </div>
+    <!-- .span12 .search-result -->
       
     <% else %>
+    <div class="span12 search-result">
+      <p>Found <%= pluralize(@searchresult.count, "result") %>:</p>
+    </div>
+    <!-- .span12 .search-result -->
       <% @searchresult.each do |r| %>
     <div class="span3 image-tile">
       <a href="<%= image_path(r) %>" class="thumb">

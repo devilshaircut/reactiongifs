@@ -1,11 +1,30 @@
 class ImagesController < ApplicationController
   
-  def new
-    @image = Image.new
+  def edit
+    @editimage = Image.find_by_id(params[:id])
   end
   
-  def show
-    @showimage = Image.find_by_id(params[:id])
+  def update
+    
+    @editimage = Image.find_by_id(params[:id])
+    if params[:image]["description"] != nil && params[:image]["description"].strip != "" && params[:image]["tags"] != nil && params[:image]["tags"].strip != ""
+      @editimage.description = params[:image]["description"]
+      @editimage.tags = []
+      @editimage.save
+      tagsarray = params[:image]["tags"].split(",").collect { |c| c.strip }
+      tagsarray.each do |t|
+        @editimage.tags << Tag.find_or_create_by_keyword(t)
+        @editimage.save
+      end
+      redirect_to edit_image_path(@editimage), :alert => "Image updated. Great success!"
+    else
+      redirect_to edit_image_path(@editimage), :alert => "All fields must be complete."
+    end
+    
+  end
+  
+  def new
+    @image = Image.new
   end
   
   def create
@@ -42,9 +61,6 @@ class ImagesController < ApplicationController
 
   end
   
-  def edit
-  end
-  
   def index
     
     # Enable to the image index page to show a random assortment of GIFs.
@@ -59,6 +75,10 @@ class ImagesController < ApplicationController
       end
     end
     
+  end
+  
+  def show
+    @showimage = Image.find_by_id(params[:id])
   end
   
 end
