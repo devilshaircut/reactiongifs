@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   end
   
   def show
-    @imageurl = Image.find_by_id(params[:id]).url
+    @showimage = Image.find_by_id(params[:id])
   end
   
   def create

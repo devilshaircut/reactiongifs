@@ -8,16 +8,28 @@
 
 **************************************************
 
-  Search Form
-  Image Tiles
+  1.  General Styles
+  2.  Forms
+  3.  Search Form
+  4.  Image Tiles
+  5.  Page Styles
 
 **************************************************/
 
+
+/* General Styles */
 
 body {
   padding-top: 40px;
   padding-bottom: 60px;
   background: transparent url("background.gif") repeat 0 0;
+}
+
+
+/* Forms */
+
+label {
+  cursor: pointer;
 }
 
 .row-clear {
@@ -97,15 +109,40 @@ body {
     img {
       width: 100%;
       height: 100%;
+      display: none;
     }
   }
   .tag {
-    display: block;
-    float: left;
-    padding: 3px 8px 5px 8px;
-    margin: 0 5px 20px 0;
-    border: 1px solid #d9d9d9;
-    @include border-radius(3px);
+    margin-bottom: 20px;
   }
 }
+
+.tag {
+  display: block;
+  float: left;
+  padding: 3px 8px 5px 8px;
+  margin: 0 5px 10px 0;
+  border: 1px solid #d9d9d9;
+  @include border-radius(3px);
+}
+
+
+
+/* Page Styles */
+
+/* Show Image */
+
+.images-show {
+  img {
+    display: block;
+    float: left;
+  }
+}
+
+
+
+
+
+
+
 

@@ -2,17 +2,7 @@
 
   <div class="row">
 
-    <div class="row-clear">
-      <div class="span6 offset3 search-form">
-        <a href="<%= root_path %>"><h1><span>Reaction GIF</span> Database</h1></a>        
-        <%= form_tag search_path, :method => "get" do %>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search" %>
-        <% end %>
-      </div>
-      <!-- .span6 .offset3 .search-form -->
-    </div>
-    <!-- .row-clear -->
+    <%= render "shared/search_form" %>
     
     <% if @searchresult == nil %>
       <p>No results.</p>
@@ -20,12 +10,12 @@
     <% else %>
       <% @searchresult.each do |r| %>
     <div class="span3 image-tile">
-      <div class="thumb">
+      <a href="<%= image_path(r) %>" class="thumb">
         <img src="<%= r.url %>" alt="<%= r.description %>" />
-      </div>
+      </a>
       <!-- .thumb -->
-        <% r.tags.each do |t| %>
-      <a href="#" class="tag"><%= t.keyword %></a>
+        <% r.tags.each do |k| %>
+      <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
         <% end %>
     </div>
     <!-- .span3 .image-tile -->

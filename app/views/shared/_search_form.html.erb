@@ -1,0 +1,11 @@
+<div class="row-clear">
+  <div class="span6 offset3 search-form">
+    <a href="<%= root_path %>"><h1><span>Reaction GIF</span> Database</h1></a>
+    <%= form_tag search_path, :method => "get" do %>
+      <%= text_field_tag :search, nil, :placeholder => "Search ..." %>
+      <%= submit_tag "Search" %>
+    <% end %>
+  </div>
+  <!-- .span4 .offset4 .search-form -->
+</div>
+<!-- .row-clear -->
