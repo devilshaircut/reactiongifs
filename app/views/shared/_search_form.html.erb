@@ -3,7 +3,7 @@
     <a href="<%= root_path %>"><h1><span>Reaction GIF</span> Database</h1></a>
     <%= form_tag search_path, :method => "get" do %>
       <%= text_field_tag :search, nil, :placeholder => "Search ..." %>
-      <%= submit_tag "Search" %>
+      <%= button_tag "Search", :class => "btn" %>
     <% end %>
   </div>
   <!-- .span4 .offset4 .search-form -->

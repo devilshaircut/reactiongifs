@@ -74,15 +74,16 @@ label {
     @include box-shadow(0 1px 0 #ffffff);
     @include box-sizing(border-box);
   }
-  input[type="submit"] {
+  button {
     display: block;
     float: right;
     width: 100px;
-    height: 44px;
+    height: 40px;
     padding: 7px 8px 9px 8px;
-    margin: -46px 2px 0 0;
+    margin: -44px 4px 0 0;
     position: relative;
     z-index: 100;
+    @include border-radius(3px);
     @include box-sizing(border-box);
   }
 }
