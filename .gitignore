@@ -17,7 +17,8 @@
 # Ignore OSX generated file.
 .DS_Store*
 
-
+# Ignore private DB yaml file.
+/config/database.yml
 
 
 
