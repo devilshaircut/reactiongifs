@@ -1,7 +1,7 @@
 common: &common
   adapter: postgresql
-  username: gtg716g
-  password: dec19th
+  username: *
+  password: *
   
 
 development:
