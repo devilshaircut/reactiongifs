@@ -14,13 +14,13 @@
     </div>
     <!-- .row-clear -->
     
-    <% @imagearray.each do |t| %>
+    <% @images.each do |t| %>
     <div class="span3 image-tile">
       <div class="thumb">
-        <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
+        <img src="<%= t.url %>" alt="Image <%= t.id %>." />
       </div>
       <!-- .thumbnail -->
-      <% Image.find_by_id(t).tags.each do |k| %>
+      <% t.tags.each do |k| %>
       <a href="#" class="tag"><%= k.keyword %></a>
       <% end %>
     </div>

@@ -4,7 +4,7 @@
 
     <%= render "shared/search_form" %>
     
-    <% if @searchresult == nil %>
+    <% if @images.nil? %>
     <div class="span12 search-result">
       <p>No results.</p>
     </div>
@@ -12,10 +12,10 @@
       
     <% else %>
     <div class="span12 search-result">
-      <p>Found <%= pluralize(@searchresult.count, "result") %>:</p>
+      <p>Found <%= pluralize(@images.count, "result") %>:</p>
     </div>
     <!-- .span12 .search-result -->
-      <% @searchresult.each do |r| %>
+      <% @images.each do |r| %>
     <div class="span3 image-tile">
       <a href="<%= image_path(r) %>" class="thumb">
         <img src="<%= r.url %>" alt="<%= r.description %>" />
