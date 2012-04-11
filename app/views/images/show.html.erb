@@ -2,15 +2,15 @@
 
   <div class="row-clear">
     <div class="span6 offset3">
-      <img src="<%= @showimage.url %>" alt="<%= @showimage.description %>" />
-      <% @showimage.tags.each do |k| %>
+      <img src="<%= @image.url %>" alt="<%= @image.description %>" />
+      <% @image.tags.each do |k| %>
       <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
       <% end %>
-      <p><%= @showimage.description %></p>
+      <p><%= @image.description %></p>
       <%= label_tag "db-link", "Link to This Page" %>
-      <%= text_field_tag "db-link", "http://www.reactiongifsdb.com" + image_path(@showimage.id) %>
+      <%= text_field_tag "db-link", "http://www.reactiongifsdb.com" + image_path(@image.id) %>
       <%= label_tag "image-link", "Image URL" %>
-      <%= text_field_tag "image-link", @showimage.url %>
+      <%= text_field_tag "image-link", @image.url %>
     </div>
     <!-- .span6 .offset3 -->
   </div>

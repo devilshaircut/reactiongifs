@@ -4,16 +4,16 @@
     
     <%
       memo = 0
-      @imagearray.each do |t|
+      @images.each do |t|
         memo += 1
         if memo != 5
     %>
     <div class="span3 image-tile">
       <a href="<%= image_path(t) %>" class="thumb">
-        <img src="<%= Image.find_by_id(t).url.gsub(".gif", "b.jpg") %>" alt="Image <%= Image.find_by_id(t).description %>." />
+        <img src="<%= t.url.gsub(".gif", "b.jpg") %>" alt="Image <%= t.description %>." />
       </a>
       <!-- .thumb -->
-          <% Image.find_by_id(t).tags.each do |k| %>
+          <% t.tags.each do |k| %>
       <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
           <% end %>
     </div>
@@ -25,10 +25,10 @@
     
     <div class="span3 image-tile">
       <div class="thumb">
-        <img src="<%= Image.find_by_id(t).url.gsub(".gif", "b.jpg") %>" alt="Image <%= t %>." />
+        <img src="<%= t.url.gsub(".gif", "b.jpg") %>" alt="Image <%= t.description %>." />
       </div>
       <!-- .thumb -->
-      <% Image.find_by_id(t).tags.each do |k| %>
+      <% t.tags.each do |k| %>
       <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
       <% end %>
     </div>

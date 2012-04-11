@@ -5,12 +5,13 @@ class HomeController < ApplicationController
     # Enable to the index page to show a random assortment of GIFs.
     # Select a random number from 1 to the number of Image records.
     imagecount = Image.count
-    @imagearray = []
+    @images = []
     # If a record exists with ID matching the RNG, add it to the array. Do this until array is length 8.
-    until @imagearray.count == 12 do
+    until @images.count == 12 do
       imageid = rand(imagecount) + 1
-      unless @imagearray.include?(imageid) || Image.find_by_id(imageid) == nil
-        @imagearray += [imageid]
+      image = Image.find_by_id(imageid)
+      unless @images.include?(image) || image.nil?
+        @images << image
       end
     end
     
@@ -20,11 +21,12 @@ class HomeController < ApplicationController
     
     # Enable search for Index and Search pages.
     # Make sure the user submits something usable for search. Return Image records in an array.
-    if params[:search] != nil && Tag.find_by_keyword(params[:search]) != nil && params[:search].strip != ""
-      @searchresult = Tag.find_by_keyword(params[:search]).images
+    tag = Tag.find_by_keyword(params[:search])
+    if params[:search].present? && tag.present? && params[:search].present?
+      @images = Tag.find_by_keyword(params[:search]).images
     # If the user has submitted bad data, then return nil.
     else
-      @searchresult = nil
+      @images = nil
     end
     
   end

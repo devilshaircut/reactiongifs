@@ -1,24 +1,23 @@
 class ImagesController < ApplicationController
   
   def edit
-    @editimage = Image.find_by_id(params[:id])
+    @image = Image.find params[:id]
   end
   
   def update
-    
-    @editimage = Image.find_by_id(params[:id])
-    if params[:image]["description"] != nil && params[:image]["description"].strip != "" && params[:image]["tags"] != nil && params[:image]["tags"].strip != ""
-      @editimage.description = params[:image]["description"]
-      @editimage.tags = []
-      @editimage.save
+    @image = Image.find params[:id] 
+    if params[:image]["description"].present? && params[:image]["tags"].present?
+      @image.description = params[:image]["description"]
+      @image.tags = []
+      @image.save
       tagsarray = params[:image]["tags"].split(",").collect { |c| c.strip }
       tagsarray.each do |t|
-        @editimage.tags << Tag.find_or_create_by_keyword(t)
-        @editimage.save
+        @image.tags << Tag.find_or_create_by_keyword(t)
+        @image.save
       end
-      redirect_to edit_image_path(@editimage), :alert => "Image updated. Great success!"
+      redirect_to edit_image_path(@image), :alert => "Image updated. Great success!"
     else
-      redirect_to edit_image_path(@editimage), :alert => "All fields must be complete."
+      redirect_to edit_image_path(@image), :alert => "All fields must be complete."
     end
     
   end
@@ -33,9 +32,9 @@ class ImagesController < ApplicationController
     # Start creating a new image record.
     @image = Image.new
     # Make sure the user has submitted valid data.
-    if params[:image] != nil && params[:image]["url"].strip != ""
+    if params[:image].present? && params[:image]["url"].present?
       # Make sure a record for this image does not already exist. Edit URL and description.
-      if Image.find_by_url(params[:image]["url"]) == nil
+      if Image.find_by_url(params[:image]["url"]).nil?
         @image.url = params[:image]["url"]
         @image.description = params[:image]["description"]
         @image.save
@@ -66,19 +65,20 @@ class ImagesController < ApplicationController
     # Enable to the image index page to show a random assortment of GIFs.
     # Select a random number from 1 to the number of Image records.
     imagecount = Image.count
-    @imagearray = []
+    @images = []
     # If a record exists with ID matching the RNG, add it to the array. Do this until array is length 8.
-    until @imagearray.count == 12 do
+    until @images.count == 12 do
       imageid = rand(imagecount) + 1
-      unless @imagearray.include?(imageid) || Image.find_by_id(imageid) == nil
-        @imagearray += [imageid]
+      img = Image.find_by_id(imageid)
+      unless @images.include?(imageid) || img.nil?
+        @images << img
       end
     end
     
   end
   
   def show
-    @showimage = Image.find_by_id(params[:id])
+    @image = Image.find params[:id]
   end
   
 end

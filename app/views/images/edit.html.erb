@@ -2,28 +2,28 @@
 
   <div class="row-clear">
     
-    <p>You are editing info for the image (id #<%= @editimage.id %>) found at <a href="<% @editimage.url %>"><%= @editimage.url %></a>.</p>
+    <p>You are editing info for the image (id #<%= @image.id %>) found at <a href="<% @image.url %>"><%= @image.url %></a>.</p>
 
-    <img src="<%= @editimage.url %>" alt="<%= @editimage.description %>" />
+    <img src="<%= @image.url %>" alt="<%= @image.description %>" />
 
-    <%= form_for @editimage do |i| %>
+    <%= form_for @image do |i| %>
       <%= i.label :description %>
-      <%= i.text_field :description, :value => @editimage.description %>
+      <%= i.text_field :description, :value => @image.description %>
       <%= i.label :tags %>
       <%
         # This little function returns the tags and comma-separates them to show user in UI for nice usability.
-        editimagetagstring = ""
-        memo = @editimage.tags.count
-        @editimage.tags.each do |k|
+        imagetagstring = ""
+        memo = @image.tags.count
+        @image.tags.each do |k|
           if memo == 1
-            editimagetagstring += k.keyword
+            imagetagstring += k.keyword
           else
-            editimagetagstring += k.keyword + ", "
+            imagetagstring += k.keyword + ", "
             memo -= 1
           end
         end
       %>
-      <%= i.text_field :tags, :value => editimagetagstring %>
+      <%= i.text_field :tags, :value => imagetagstring %>
       <%= i.submit "Confirm Edits" %>
     <% end %>
     
