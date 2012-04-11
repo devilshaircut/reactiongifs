@@ -96,6 +96,7 @@ seeds.each do |hash|
   image = Image.find_or_create_by_url(hash[:url])
   image.description = hash[:description]
   image.save
+  image.tags = []
   hash[:tags].each do |tag|
     image.tags << Tag.find_or_create_by_keyword(tag)
   end
