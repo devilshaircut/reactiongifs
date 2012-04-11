@@ -34,4 +34,9 @@ Reactiongifs::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  
+  # Just for local environment, for Devise (use public URL for production):
+  config.action_mailer.default_url_options = { :host => 'reactiongifs.dev' }
+
 end

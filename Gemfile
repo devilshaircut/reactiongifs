@@ -44,7 +44,9 @@ gem 'jquery-rails'
 
 group :assets do
   gem 'compass-rails'
-end  
+end
+
+gem 'devise'
 
 # --------------------------------------------------
 

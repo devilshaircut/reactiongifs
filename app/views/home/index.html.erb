@@ -10,7 +10,7 @@
     %>
     <div class="span3 image-tile">
       <a href="<%= image_path(t) %>" class="thumb">
-        <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= Image.find_by_id(t).description %>." />
+        <img src="<%= Image.find_by_id(t).url.gsub(".gif", "b.jpg") %>" alt="Image <%= Image.find_by_id(t).description %>." />
       </a>
       <!-- .thumb -->
           <% Image.find_by_id(t).tags.each do |k| %>
@@ -25,7 +25,7 @@
     
     <div class="span3 image-tile">
       <div class="thumb">
-        <img src="<%= Image.find_by_id(t).url %>" alt="Image <%= t %>." />
+        <img src="<%= Image.find_by_id(t).url.gsub(".gif", "b.jpg") %>" alt="Image <%= t %>." />
       </div>
       <!-- .thumb -->
       <% Image.find_by_id(t).tags.each do |k| %>

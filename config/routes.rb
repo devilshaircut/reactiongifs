@@ -1,6 +1,8 @@
 Reactiongifs::Application.routes.draw do
   
-  root :to                =>  "home#index"
+  devise_for :users
+
+  root :to            =>  "home#index"
   match '/search'     =>  'home#search'
   
   resources :images
