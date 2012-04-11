@@ -2,15 +2,38 @@
 
   <div class="row-clear">
     <div class="span6 offset3">
-      <img src="<%= @image.url %>" alt="<%= @image.description %>" />
-      <% @image.tags.each do |k| %>
-      <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
-      <% end %>
-      <p><%= @image.description %></p>
-      <%= label_tag "db-link", "Link to This Page" %>
-      <%= text_field_tag "db-link", "http://www.reactiongifsdb.com" + image_path(@image.id) %>
-      <%= label_tag "image-link", "Image URL" %>
-      <%= text_field_tag "image-link", @image.url %>
+
+      <div class="row-clear">      
+        <img src="<%= @image.url %>" alt="<%= @image.description %>" />
+      </div>
+      <!-- .row-clear -->
+          
+      <div class="row-clear">
+        <p><em><%= @image.description %></em></p>
+      </div>
+      <!-- .row-clear -->
+
+      <hr />
+      
+      <div class="row-clear">
+        <% @image.tags.each do |k| %>
+        <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>
+        <% end %>
+      </div>
+      <!-- .row-clear -->
+      
+      <hr style="margin-top: 9px;" />
+      
+      <div class="row-clear">
+        <%= label_tag "db-link", "Link to This Page" %>
+        <%= text_field_tag "db-link", "http://www.reactiongifsdb.com" + image_path(@image.id) %>
+        <%= label_tag "image-link", "Image URL" %>
+        <%= text_field_tag "image-link", @image.url %>
+      </div>
+      <!-- .row-clear -->
+      
+      <hr style="margin-bottom: 0;" />
+      
     </div>
     <!-- .span6 .offset3 -->
   </div>
