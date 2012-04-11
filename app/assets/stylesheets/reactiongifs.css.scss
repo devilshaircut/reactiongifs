@@ -2,22 +2,32 @@
 @import "compass/utilities/general/clearfix";
 
 
-/**************************************************
+
+/****************************************************************************************************
 
   Table of Contents
 
-**************************************************
+*****************************************************************************************************
 
   1.  General Styles
+      - General Body Cascade
+      - Tags
   2.  Forms
-  3.  Search Form
-  4.  Image Tiles
-  5.  Page Styles
+  3.  Page Modules
+      - Search Form
+      - Image Tiles
+  4.  Page-Specific Styles
+      - Home Page
+      - Search Results
+      - Show Image
 
+****************************************************************************************************/
+
+
+
+/*************************************************
+  1.  General Styles
 **************************************************/
-
-
-/* General Styles */
 
 body {
   padding-top: 40px;
@@ -25,8 +35,20 @@ body {
   background: transparent url("background.gif") repeat 0 0;
 }
 
+.tag {
+  display: block;
+  float: left;
+  padding: 3px 8px 5px 8px;
+  margin: 0 5px 10px 0;
+  border: 1px solid #d9d9d9;
+  background: #ffffff;
+  @include border-radius(3px);
+}
 
-/* Forms */
+
+/**************************************************
+  2.  Forms
+**************************************************/
 
 label {
   cursor: pointer;
@@ -37,6 +59,10 @@ label {
   width: 100%;
 }
 
+
+/**************************************************
+  3.  Page Modules
+**************************************************/
 
 /* Search Form */
 
@@ -117,18 +143,17 @@ label {
   }
 }
 
-.tag {
-  display: block;
-  float: left;
-  padding: 3px 8px 5px 8px;
-  margin: 0 5px 10px 0;
-  border: 1px solid #d9d9d9;
-  background: #ffffff;
-  @include border-radius(3px);
+
+/**************************************************
+  3.  Page-Specific Styles
+**************************************************/
+
+/* Home Page */
+
+.home-page .image-tile .thumb img {
+  width: 100%;
+  margin: -30px auto 0;
 }
-
-
-/* Page Styles */
 
 /* Search Results */
 
@@ -149,6 +174,15 @@ label {
     text-align: center;
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 
