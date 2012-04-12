@@ -24,9 +24,9 @@
     <%= render "shared/search_form" %>
     
     <div class="span3 image-tile">
-      <div class="thumb">
+      <a href="<%= image_path(t) %>" class="thumb">
         <img src="<%= t.url.gsub(".gif", "b.jpg") %>" alt="Image <%= t.description %>." />
-      </div>
+      </a>
       <!-- .thumb -->
       <% t.tags.each do |k| %>
       <%= link_to k.keyword, search_path + "?search=" + k.keyword + "&commit=Search", :class => "tag" %>

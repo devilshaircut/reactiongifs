@@ -9,7 +9,7 @@
       <!-- .row-clear -->
           
       <div class="row-clear">
-        <p><em><%= @image.description %></em></p>
+        <p><em><%= @image.description %></em><br /></p>
       </div>
       <!-- .row-clear -->
 
@@ -32,7 +32,9 @@
       </div>
       <!-- .row-clear -->
       
-      <hr style="margin-bottom: 0;" />
+      <hr />
+      
+      <p style="font-size: 11px;">This image is <a href="<%= @image.url.gsub(".gif", "") %>">hosted on Imgur</a>. Check them out!</p>
       
     </div>
     <!-- .span6 .offset3 -->
