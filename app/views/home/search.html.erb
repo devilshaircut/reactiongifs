@@ -6,13 +6,13 @@
     
     <% if @images.nil? %>
     <div class="span12 search-result">
-      <p>No results.</p>
+      <p>No results for "<%= params[:search] %>".</p>
     </div>
     <!-- .span12 .search-result -->
       
     <% else %>
     <div class="span12 search-result">
-      <p>Found <%= pluralize(@images.count, "result") %>:</p>
+      <p>Found <%= pluralize(@images.count, "result") %> for "<%= params[:search] %>":</p>
     </div>
     <!-- .span12 .search-result -->
       <% @images.each do |r| %>
