@@ -21,9 +21,16 @@ class HomeController < ApplicationController
     
     # Enable search for Index and Search pages.
     # Make sure the user submits something usable for search. Return Image records in an array.
-    tag = Tag.find_by_keyword(params[:search])
-    if params[:search].present? && tag.present? && params[:search].present?
-      @images = Tag.find_by_keyword(params[:search]).images
+    if params[:search].present?
+      @images = []
+      @tags = Tag.where("keyword like ?", "%#{params[:search]}%").all.each do |tag|
+        tagimages = tag.images
+        tagimages.each do |image|
+          unless @images.include?(image)
+            @images << image
+          end
+        end
+      end
     # If the user has submitted bad data, then return nil.
     else
       @images = nil
